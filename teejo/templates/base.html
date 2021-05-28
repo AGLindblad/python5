@@ -1,0 +1,30 @@
+
+{% if not title %}
+  {% set title= "The baseline" %}
+{% endif %}
+
+<!Doctype html>
+<html lang=en>
+  <head>
+    <title> {{ title }} </title>
+    <meta charset="utf-8">
+    <meta name=viewport content="width=device-width; initial-scale=1">
+  </head>
+
+  <body>
+    <nav>
+    <a href="/">Home</a>
+    <a href="/task/add">Add a task please </a>
+    </nav>
+
+    {% for msg in get_flashed_messages() %}
+      <p> {{ msg }} </p>
+    {% endfor %}
+
+    <h2> {{title}} </h2>
+    {% block content %}
+    <p> Hello base: if visible, index had failed? </p>
+    {% endblock content %}
+  </body>
+</html>
+
