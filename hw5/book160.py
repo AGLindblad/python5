@@ -98,7 +98,7 @@ def initDb():
   book = Book(title="A farewell to Arms", author="E. Hemingway", plot="There is a war and a boy and a girl fall in love. The war sucks and he bumbles around in the rain towards the end. The arms do not bid any farewell though.")
   db.session.add(book)
 
-  book = Book(title="The Great Gatsby", author="F.S. Fitzgerald", plot="Rich guy feels lonely despite throwing parties. There is a green light, jazz  and an elusive girl.")
+  book = Book(title="The Great Gatsby", author="F.S. Fitzgerald", plot="Rich guy feels lonely despite throwing parties. There is a green light, jazz, an unfortunate swimming pool  and an elusive girl.")
   db.session.add(book)
 
   db.session.commit()
