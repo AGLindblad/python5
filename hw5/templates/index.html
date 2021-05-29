@@ -1,0 +1,17 @@
+{% set title="A book in 160 charactes!" %}
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h2> Our books </h2>
+  {% for book in books %}
+    <p>
+      <a href="/book/{{ book.id }}/edit">
+        {{ book.title }} <br> 
+        {{ book.author }} <br>
+        {{ book.plot }} <br>
+      </a>
+      <a href="/book/{{ book.id }}/delete">Delete</a>
+    </p>
+  {% endfor %}
+{% endblock content %}
