@@ -13,16 +13,15 @@
 
   <body>
     <nav>
-    <a href="/">Home</a>
-    <a href="/task/add">Add a task please </a>
-    {% if currentUser()= %}
-      <a href="/user/logout">byeeeee </a>
-      {{ current.user (email) }}
-    {% else %}
-    <a href="/user/login">Add k please </a>
-    <a href="/user/logout">byeeeee </a>
-    <a href="/user/register">Add X please </a>
-    {% endif %}
+      <a href="/">Home</a>
+      <a href="/task/add">Add a task please </a>
+      {% if currentUser() %}
+        <a href="/user/logout">Logged out </a>
+        {{ currentUser().email }}
+      {% else %}
+        <a href="/user/login">Login </a>
+        <a href="/user/register">Register </a>
+      {% endif %}
     </nav>
 
     {% for msg in get_flashed_messages() %}

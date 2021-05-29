@@ -1,5 +1,6 @@
-from flask import Flask, render_template, flash, redirect
+from flask import Flask, render_template, flash, redirect, session
 from flask_sqlalchemy import SQLAlchemy
+
 from flask_wtf import FlaskForm
 from wtforms.ext.sqlalchemy.orm import model_form
 
@@ -20,7 +21,7 @@ class User(db.Model):
   email = db.Column(db.String, nullable=False, unique=True)
   passwordHash = db.Column(db.String, nullable=False)
 
-  def setPassword(self, password)
+  def setPassword(self, password):
     self.passwordHash = generate_password_hash(password)
 
   def checkPassword(self, password):
@@ -55,9 +56,10 @@ def loginView():
         flash("Login failed")
         return redirect("/user/login")
 
-      session ["uid"]=user.id
+      session ["uid"] = user.id
       flash("suycces")
       return redirect("/")
+
   return render_template("login.html", form=form)
 
 @app.route("/user/register", methods=["GET", "POST"])
