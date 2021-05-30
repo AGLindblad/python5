@@ -38,7 +38,7 @@ def custom404(e):
 
 @app.errorhandler(403)
 def custom403(e):
-  return redirect("/login")
+  return redirect("/user/login")
 
 def currentUser():
   try:
