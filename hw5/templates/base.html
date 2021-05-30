@@ -17,6 +17,7 @@
       {% if currentUser() %}
         <a href="/book/add">Add a synopsis  </a>
         <a href="/user/logout">Log out </a>
+        <a> Welcome, </a>
         {{ currentUser().email }}
       {% else %}
         <a href="/user/login">Login </a>

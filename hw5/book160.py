@@ -32,6 +32,14 @@ class UserForm(FlaskForm):
   email = StringField("email", validators=[validators.Email()])
   password = PasswordField("password", validators=[validators.InputRequired()])
 
+@app.errorhandler(404)
+def custom404(e):
+  return render_template("404.html")
+
+@app.errorhandler(403)
+def custom403(e):
+  return redirect("/login")
+
 def currentUser():
   try:
     uid = int(session["uid"])
@@ -40,6 +48,10 @@ def currentUser():
   return User.query.get(uid)
 
 app.jinja_env.globals["currentUser"] = currentUser
+
+def loginRequired():
+  if not currentUser():
+    abort(403)
 
 @app.route("/user/login", methods =["GET", "POST"])
 def loginView():
@@ -103,13 +115,10 @@ def initDb():
 
   db.session.commit()
 
-@app.errorhandler(404)
-def custom404(e):
-  return render_template("404.html")
-
 @app.route("/book/<int:id>/edit", methods=["GET", "POST"])
 @app.route ("/book/add", methods=["GET", "POST"])
 def addView(id=None):
+  loginRequired()
   book = Book()
   if id:
     book = Book.query.get_or_404(id)
@@ -128,6 +137,7 @@ def addView(id=None):
 
 @app.route("/book/<int:id>/delete")
 def deleteView(id):
+  loginRequired()
   book = Book.query.get_or_404(id)
   db.session.delete(book)
   db.session.commit()
